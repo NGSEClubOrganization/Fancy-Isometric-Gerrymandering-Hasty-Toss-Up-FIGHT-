@@ -1,0 +1,12 @@
+package com.ngse.fight.classes;
+
+import org.bukkit.entity.Player;
+import org.bukkit.potion.PotionEffect;
+
+public abstract class Attack {
+
+	public int damage;
+	public Player target;
+	public PotionEffect targetPotionEffect;
+
+}

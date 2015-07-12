@@ -1,0 +1,7 @@
+package com.ngse.fight.abilities;
+
+public abstract class Ability {
+	
+	public boolean passive;
+
+}

@@ -1,0 +1,8 @@
+package com.ngse.fight.specials;
+
+public class Spell {
+	
+	private boolean passive;
+	private 
+
+}

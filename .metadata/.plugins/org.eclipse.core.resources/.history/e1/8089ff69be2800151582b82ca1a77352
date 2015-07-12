@@ -1,0 +1,21 @@
+package com.ngse.fight.specials;
+
+import org.bukkit.potion.PotionEffect;
+
+import com.ngse.fight.FightPlayer;
+import com.ngse.fight.classes.Spell;
+
+public class GiveRandomPotion extends Spell {
+
+	public GiveRandomPotion(FightPlayer user, boolean passive,
+			PotionEffect potionEffect) {
+		super(user, false, null);
+	}
+
+	@Override
+	public void specificEffect() {
+		// TODO Auto-generated method stub
+
+	}
+
+}

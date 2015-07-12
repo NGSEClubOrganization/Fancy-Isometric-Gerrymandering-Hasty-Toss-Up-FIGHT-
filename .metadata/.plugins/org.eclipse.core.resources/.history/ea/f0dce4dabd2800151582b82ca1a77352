@@ -1,0 +1,10 @@
+package com.ngse.fight.specials;
+
+import org.bukkit.entity.Player;
+
+public abstract class Attack {
+
+	private int damage;
+	private Player target;
+
+}

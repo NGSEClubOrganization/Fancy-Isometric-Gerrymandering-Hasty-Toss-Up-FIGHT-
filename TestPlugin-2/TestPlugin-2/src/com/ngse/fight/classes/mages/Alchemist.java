@@ -1,5 +1,9 @@
 package com.ngse.fight.classes.mages;
 
+import org.bukkit.Material;
+import org.bukkit.inventory.ItemStack;
+
+import com.ngse.fight.classes.Ability;
 import com.ngse.fight.classes.FightClass;
 
 public class Alchemist extends FightClass {
@@ -8,4 +12,18 @@ public class Alchemist extends FightClass {
 		super("Alchemist");
 		// TODO Auto-generated constructor stub
 	}
+
+	@Override
+	public ItemStack[] getItems() {
+		ItemStack[] i = new ItemStack[5];
+		i[0] = new ItemStack(Material.GLASS_BOTTLE, 1);
+		return i;
+	}
+
+	@Override
+	public Ability[] getAbilities() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

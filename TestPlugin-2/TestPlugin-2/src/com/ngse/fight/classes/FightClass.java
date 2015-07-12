@@ -1,6 +1,5 @@
 package com.ngse.fight.classes;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.bukkit.inventory.ItemStack;
@@ -16,8 +15,8 @@ public abstract class FightClass {
 		fightClassesArray[0] = new Alchemist();
 	}
 
-	private ArrayList<FightAbility> abilities = new ArrayList<FightAbility>();
-	private ArrayList<ItemStack> items;
+	private Ability[] abilities;
+	private ItemStack[] items;
 	private String name;
 
 	public String getName() {
@@ -27,8 +26,13 @@ public abstract class FightClass {
 	public FightClass(String name) {
 		this.name = name;
 		allClasses.put(this.name, this);
+		items = getItems();
+		abilities = getAbilities();
 	}
 
 	public static HashMap<String, FightClass> allClasses;
 
+	public abstract ItemStack[] getItems();
+
+	public abstract Ability[] getAbilities();
 }

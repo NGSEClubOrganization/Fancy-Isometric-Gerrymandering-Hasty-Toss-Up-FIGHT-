@@ -1,0 +1,16 @@
+package com.ngse.fight.specials;
+
+import org.bukkit.potion.PotionEffect;
+
+import com.ngse.fight.FightPlayer;
+
+public class Spell {
+
+	private FightPlayer user;
+
+	private boolean passive;
+	private PotionEffect potionEffect;
+
+	public abstract void specificEffect();
+
+}
