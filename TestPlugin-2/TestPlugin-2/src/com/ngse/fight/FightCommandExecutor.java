@@ -24,6 +24,7 @@ public class FightCommandExecutor implements CommandExecutor {
 					if (args[0].equalsIgnoreCase("create")) {
 						c.createPlayer();
 					}
+					
 				}
 			}
 		}

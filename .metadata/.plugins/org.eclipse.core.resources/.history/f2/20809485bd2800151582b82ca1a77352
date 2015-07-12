@@ -1,0 +1,12 @@
+package com.ngse.fight.specials;
+
+import com.ngse.fight.FightPlayer;
+
+public class Spell {
+
+	private FightPlayer user;
+
+	private boolean passive;
+	private PotionEffect potionEffect
+
+}

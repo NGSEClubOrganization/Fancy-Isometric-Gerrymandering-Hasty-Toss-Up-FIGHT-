@@ -1,0 +1,8 @@
+package com.ngse.fight.specials;
+
+public abstract class Attack {
+	
+	private int damage;
+	private Player target;
+
+}
