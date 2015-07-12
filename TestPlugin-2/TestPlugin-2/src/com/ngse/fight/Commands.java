@@ -22,6 +22,10 @@ public class Commands {
 
 	}
 
+	public void help() {
+		sender.sendMessage("No one can help you...");
+	}
+
 	public void createPlayer() {
 		FIGHT.createPlayer((Player) sender, args[1]);
 		sender.sendMessage(ChatColor.GOLD
