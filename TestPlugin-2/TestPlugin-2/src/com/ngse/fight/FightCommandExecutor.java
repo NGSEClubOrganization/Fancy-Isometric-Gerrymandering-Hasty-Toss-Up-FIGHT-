@@ -18,7 +18,9 @@ public class FightCommandExecutor implements CommandExecutor {
 			if (commandLabel.equalsIgnoreCase("fight")
 					|| commandLabel.equalsIgnoreCase("f")) {
 
-				if (args.length == 2) {
+				if (args.length == 1) {
+					c.help();
+				} else if (args.length == 2) {
 					if (args[0].equalsIgnoreCase("create")) {
 						c.createPlayer();
 					}
