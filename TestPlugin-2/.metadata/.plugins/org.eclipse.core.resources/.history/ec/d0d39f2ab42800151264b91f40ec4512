@@ -1,0 +1,24 @@
+package com.ngse.fight;
+
+import java.util.HashMap;
+
+import org.bukkit.entity.Player;
+import org.bukkit.plugin.java.JavaPlugin;
+
+public class FIGHT extends JavaPlugin {
+
+	public static HashMap<Player, FightPlayer> players;
+
+	public static void createPlayer(Player p, String fightclassname) {
+		players.put(p, new FightPlayer(p, fightclassname));
+	}
+
+	public static FightPlayer getFightPlayer(Player p) {
+		return players.get(p);
+	}
+	
+	public static initClasses() {
+		
+	}
+
+}

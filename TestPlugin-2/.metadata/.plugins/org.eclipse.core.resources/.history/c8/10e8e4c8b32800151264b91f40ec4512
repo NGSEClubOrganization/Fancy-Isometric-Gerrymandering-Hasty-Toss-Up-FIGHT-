@@ -1,0 +1,23 @@
+package com.ngse.fight.classes;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
+public class FightClass {
+
+	private ArrayList<FightAbility> abilities = new ArrayList<FightAbility>();
+	private String name;
+
+	public String toString() {
+		return this.name;
+	}
+
+	public FightClass(String name) {
+		this.name = name;
+		allClasses.put(this.name, this);
+
+	}
+
+	public static HashMap<String, FightClass> allClasses;
+
+}

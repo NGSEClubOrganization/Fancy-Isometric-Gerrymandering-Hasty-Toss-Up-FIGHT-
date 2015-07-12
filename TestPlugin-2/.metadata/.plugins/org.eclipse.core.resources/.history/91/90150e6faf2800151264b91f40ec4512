@@ -1,0 +1,7 @@
+package com.ngse.fight;
+
+public class FightPlayer {
+	
+	public FightClass class;
+
+}

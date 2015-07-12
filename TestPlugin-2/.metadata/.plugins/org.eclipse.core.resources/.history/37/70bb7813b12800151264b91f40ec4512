@@ -1,0 +1,9 @@
+package com.ngse.fight;
+
+public class Commands {
+
+	public void sampleCommand(Player p, String CommandLabel, String[] args) {
+
+	}
+
+}

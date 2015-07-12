@@ -1,0 +1,39 @@
+package com.ngse.fight;
+
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+
+public class Commands {
+
+	private CommandSender sender;
+	private Command cmd;
+	private String commandLabel;
+	private String[] args;
+
+	public Commands(CommandSender sender, Command cmd, String commandLabel,
+			String[] args) {
+		this.sender = sender;
+		this.cmd = cmd;
+		this.commandLabel = commandLabel;
+		this.args = args;
+
+	}
+
+	public void createPlayer() {
+		FIGHT.createPlayer((Player) sender, args[1]);
+	}
+	
+	public void getAllClassNames() {
+		
+	}
+
+	public void getFightClass() {
+
+	}
+
+	public void getAbilites() {
+		// TODO
+	}
+
+}

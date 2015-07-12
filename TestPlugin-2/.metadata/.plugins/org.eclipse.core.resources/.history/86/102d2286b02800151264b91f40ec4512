@@ -1,0 +1,9 @@
+package com.ngse.fight;
+
+import org.bukkit.command.CommandExecutor;
+
+public class Commands implements CommandExecutor{
+	
+	public 
+
+}

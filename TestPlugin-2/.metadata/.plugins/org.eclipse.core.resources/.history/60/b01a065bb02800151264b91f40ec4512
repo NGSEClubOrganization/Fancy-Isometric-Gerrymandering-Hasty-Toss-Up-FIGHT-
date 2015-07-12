@@ -1,0 +1,18 @@
+package com.ngse.fight;
+
+import org.bukkit.entity.Player;
+
+import com.ngse.fight.classes.FightClass;
+
+public class FightPlayer {
+
+	public FightClass fightClass;
+	public Player player;
+
+	public FightPlayer(String fightclassname) {
+
+		this.fightClass = FightClass.allClasses.get(fightclassname);
+
+	}
+
+}

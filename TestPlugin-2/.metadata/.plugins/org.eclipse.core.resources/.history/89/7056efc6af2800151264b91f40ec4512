@@ -1,0 +1,13 @@
+package com.ngse.fight;
+
+import com.ngse.fight.classes.FightClass;
+
+public class FightPlayer {
+
+	public FightClass fightClass;
+	
+	public FightPlayer(String fcname) {
+		
+	}
+
+}

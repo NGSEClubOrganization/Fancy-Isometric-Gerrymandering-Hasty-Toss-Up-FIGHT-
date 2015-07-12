@@ -1,0 +1,7 @@
+package com.ngse.fight.classes;
+
+public class FightClass {
+
+	private static ArrayList<FightAbility> abilities= new ArrayList<FightAbility>();
+	
+}

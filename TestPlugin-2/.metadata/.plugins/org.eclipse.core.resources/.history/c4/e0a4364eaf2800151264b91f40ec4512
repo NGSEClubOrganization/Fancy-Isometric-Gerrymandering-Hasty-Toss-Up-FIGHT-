@@ -1,0 +1,16 @@
+package com.ngse.fight.classes;
+
+import java.util.ArrayList;
+
+public class FightClass {
+
+	private static ArrayList<FightAbility> abilities = new ArrayList<FightAbility>();
+	private static String name;
+
+	public FightClass(String name) {
+
+		name = name;
+		
+	}
+
+}

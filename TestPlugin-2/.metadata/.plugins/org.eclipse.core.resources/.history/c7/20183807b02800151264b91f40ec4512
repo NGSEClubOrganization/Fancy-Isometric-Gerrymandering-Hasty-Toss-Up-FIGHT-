@@ -1,0 +1,7 @@
+package com.ngse.fight;
+
+import org.bukkit.plugin.java.JavaPlugin;
+
+public class FIGHT extends JavaPlugin {
+
+}
