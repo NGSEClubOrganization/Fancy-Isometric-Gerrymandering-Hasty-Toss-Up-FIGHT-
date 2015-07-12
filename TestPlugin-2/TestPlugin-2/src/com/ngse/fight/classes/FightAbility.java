@@ -1,0 +1,7 @@
+package com.ngse.fight.classes;
+
+public class FightAbility {
+	
+	
+
+}

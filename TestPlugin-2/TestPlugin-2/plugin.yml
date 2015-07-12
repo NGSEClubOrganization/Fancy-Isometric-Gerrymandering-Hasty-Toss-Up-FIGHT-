@@ -1,4 +1,4 @@
 name: TestPlugin
-main: com.ngse.testplugin.TestPlugin
+main: com.ngse.fight.FIGHT
 version: 1.00
 commands:
