@@ -1,0 +1,33 @@
+package com.ngse.fight;
+
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+
+public class FightCommandExecutor implements CommandExecutor {
+
+	@Override
+	public boolean onCommand(CommandSender sender, Command cmd,
+			String commandLabel, String[] args) {
+
+		Commands c = new Commands(sender, cmd, commandLabel, args);
+
+		if (sender instanceof Player) {
+
+			if (commandLabel.equalsIgnoreCase("fight")
+					|| commandLabel.equalsIgnoreCase("f")) {
+
+				if (args.length == 1) {
+					c.help();
+				} else if (args.length == 2) {
+					if (args[0].equalsIgnoreCase("create")) {
+						c.createPlayer();
+					}
+
+				}
+			}
+		}
+		return false;
+	}
+}

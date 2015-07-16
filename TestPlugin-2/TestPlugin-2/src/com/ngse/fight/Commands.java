@@ -59,10 +59,15 @@ public class Commands {
 	}
 
 	// /fight class info <classname>
-	public void getFightClassInfo() {
+	public boolean getFightClassInfo() {
 		FightClass f = null;
 		if (FightClass.allClasses.containsKey(args[2])) {
 			f = FightClass.allClasses.get(args[2]);
+		} else {
+			sender.sendMessage(ChatColor.RED + "Not a valid class name");
+			sender.sendMessage(ChatColor.DARK_RED
+					+ "Check class names with /f class info all");
+			return false;
 		}
 
 		// header
@@ -82,6 +87,6 @@ public class Commands {
 			sender.sendMessage("      - " + ChatColor.GREEN
 					+ i.getType().toString());
 		}
-
+		return false;
 	}
 }
