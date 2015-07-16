@@ -1,0 +1,42 @@
+package com.ngse.fight.classes;
+
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+
+import com.ngse.fight.FightPlayer;
+
+public abstract class Ability {
+
+	public int level;
+	public boolean isPassive;
+	public ItemStack item;
+	public String name;
+
+	// all abilities are attched to items
+
+	public Ability(String name, int level, boolean isPassive, ItemStack item) {
+		this.name = name;
+		this.level = level;
+		this.isPassive = isPassive;
+		this.item = item;
+	}
+
+	public abstract void effect(Player user, Player target);
+
+	public abstract void effect(Player user);
+
+	public String getName() {
+		return name;
+	}
+
+	public int getLevel() {
+		return level;
+	}
+
+	public boolean isPassive() {
+		return isPassive;
+	}
+
+	public  ItemStack getItem();
+
+}

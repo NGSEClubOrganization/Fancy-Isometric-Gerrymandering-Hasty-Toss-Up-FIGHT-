@@ -1,21 +1,30 @@
 package com.ngse.fight;
 
+import java.util.Iterator;
+import java.util.Map;
+
 import net.md_5.bungee.api.ChatColor;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+
+import com.ngse.fight.classes.Ability;
+import com.ngse.fight.classes.FightClass;
 
 public class Commands {
 
-	private CommandSender sender;
+	private Player sender;
+	@SuppressWarnings("unused")
 	private Command cmd;
+	@SuppressWarnings("unused")
 	private String commandLabel;
 	private String[] args;
 
 	public Commands(CommandSender sender, Command cmd, String commandLabel,
 			String[] args) {
-		this.sender = sender;
+		this.sender = (Player) sender;
 		this.cmd = cmd;
 		this.commandLabel = commandLabel;
 		this.args = args;
@@ -26,25 +35,53 @@ public class Commands {
 		sender.sendMessage("No one can help you...");
 	}
 
+	// /fight class <classname>
 	public void createPlayer() {
-		FIGHT.createPlayer((Player) sender, args[1]);
+		FIGHT.createPlayer(sender, args[1]);
+		FightClass f = (FightClass) sender.getMetadata("fightclass").get(0)
+				.value();
+		FIGHT.plugin.getLogger().info(sender.getName() + " : " + (f).getName());
 		sender.sendMessage(ChatColor.GOLD
-				+ "You have entered a new class! You are a "
-				+ ChatColor.WHITE
-				+ FIGHT.getFightPlayer((Player) sender).getFightClass()
-						.getName());
+				+ "You have entered a new class! You are a " + ChatColor.WHITE
+				+ (f).getName());
+		FightClass.initiateClass(sender, f);
 	}
 
+	@SuppressWarnings("rawtypes")
+	// /fight class info all
 	public void getAllClassNames() {
-
+		sender.sendMessage("All Classes: ");
+		Iterator i = FightClass.allClasses.entrySet().iterator();
+		while (i.hasNext()) {
+			sender.sendMessage("- - " + ChatColor.GOLD
+					+ ((Map.Entry) i.next()).getKey());
+		}
 	}
 
-	public void getFightClass() {
+	// /fight class info <classname>
+	public void getFightClassInfo() {
+		FightClass f = null;
+		if (FightClass.allClasses.containsKey(args[2])) {
+			f = FightClass.allClasses.get(args[2]);
+		}
+
+		// header
+		sender.sendMessage(ChatColor.GRAY + "Class info:" + ChatColor.GOLD
+				+ f.getName().toUpperCase());
+
+		// abilities
+		sender.sendMessage(ChatColor.GRAY + "    Abilities:");
+		for (Ability a : f.getAbilities()) {
+			sender.sendMessage("      - " + ChatColor.BLUE + "(" + a.getLevel()
+					+ ")" + ChatColor.YELLOW + a.getName());
+		}
+
+		// items
+		sender.sendMessage(ChatColor.GRAY + "    Items:");
+		for (ItemStack i : f.getItems()) {
+			sender.sendMessage("      - " + ChatColor.GREEN
+					+ i.getType().toString());
+		}
 
 	}
-
-	public void getAbilites() {
-		// TODO
-	}
-
 }

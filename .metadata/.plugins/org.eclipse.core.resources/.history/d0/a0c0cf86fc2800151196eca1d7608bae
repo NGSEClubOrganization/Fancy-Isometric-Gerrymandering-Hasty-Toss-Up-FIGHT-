@@ -1,0 +1,12 @@
+package com.ngse.fight.classes.mages;
+
+import com.ngse.fight.classes.FightClass;
+
+public class Shadow extends FightClass {
+
+	public Shadow() {
+		super(name);
+		// TODO Auto-generated constructor stub
+	}
+
+}

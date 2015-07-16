@@ -1,0 +1,76 @@
+package com.ngse.fight.classes;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+
+import com.ngse.fight.classes.mages.Alchemist;
+
+public abstract class FightClass {
+
+	public static HashMap<String, FightClass> allClasses = new HashMap<String, FightClass>();
+
+	public abstract ArrayList<ItemStack> getItems();
+
+	public abstract ArrayList<Ability> getAbilities();
+
+	public static void fightClassesArraySetup() {
+		Alchemist a = new Alchemist();
+		allClasses.put(a.getName(), a);
+	}
+
+	private ArrayList<Ability> abilities;
+	private ArrayList<ItemStack> items;
+	private String name;
+
+	public String getName() {
+		return this.name;
+	}
+
+	public FightClass(String name) {
+		this.name = name;
+		items = getItems();
+		abilities = getAbilities();
+		allClasses.put(this.name, this);
+	}
+
+	public static void initiateClass(Player sender, FightClass fightclass) {
+		// give items
+		for (ItemStack is : fightclass.getItems()) {
+			sender.getInventory().addItem(is);
+		}
+		// give abilities (activated by these items)
+		for (Ability a : fightclass.getAbilities()) {
+			sender.getInventory().addItem(a.getItem());
+		}
+	}
+
+	public static boolean useAbility(Player sender) {
+		ItemStack i = sender.getItemInHand();
+		List<Entity> entities = sender.getNearbyEntities(7, 7, 7);
+		for (Entity e : entities) {
+			if (!(e instanceof Player)) {
+				entities.remove(e);
+			}
+			if(entities.size() == 0) {
+				
+			}
+		}
+		FightClass f = (FightClass) sender.getMetadata("fightclass");
+		if (f != null) {
+			for (Ability a : f.getAbilities()) {
+				if (i.getItemMeta().getLore().get(0)
+						.equalsIgnoreCase(a.getMID())) {
+					a.effect(sender);
+				}
+			}
+		} else {
+			return false;
+		}
+		return true;
+	}
+}

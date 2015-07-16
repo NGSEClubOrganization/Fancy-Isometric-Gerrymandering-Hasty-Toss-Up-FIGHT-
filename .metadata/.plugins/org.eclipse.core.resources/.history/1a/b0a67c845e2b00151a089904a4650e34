@@ -1,0 +1,13 @@
+package com.ngse.fight.specials;
+
+import com.ngse.fight.FightPlayer;
+import com.ngse.fight.classes.Ability;
+
+public class GiveRandomPotion extends Ability {
+
+	public GiveRandomPotion() {
+		super(1, passive);
+		// TODO Auto-generated constructor stub
+	}
+
+}

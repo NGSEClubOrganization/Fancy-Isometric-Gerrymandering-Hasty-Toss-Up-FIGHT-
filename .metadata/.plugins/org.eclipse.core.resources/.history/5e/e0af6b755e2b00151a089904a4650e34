@@ -1,0 +1,7 @@
+package com.ngse.fight.specials;
+
+import com.ngse.fight.classes.Ability;
+
+public class GiveRandomPotion extends Ability {
+
+}

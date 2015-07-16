@@ -1,0 +1,33 @@
+package com.ngse.fight.specials;
+
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+
+import com.ngse.fight.classes.Ability;
+
+public class GiveRandomPotion extends Ability {
+
+	public GiveRandomPotion(String name, int level, boolean isPassive) {
+		super(name, level, isPassive);
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public void effect(Player user, Player target) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void effect(Player user) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public ItemStack getItem() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

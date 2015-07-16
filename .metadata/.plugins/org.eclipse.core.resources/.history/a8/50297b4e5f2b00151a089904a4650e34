@@ -1,0 +1,43 @@
+package com.ngse.fight.classes;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+
+import com.ngse.fight.classes.mages.Alchemist;
+
+public abstract class FightClass {
+
+	public static HashMap<String, FightClass> allClasses = new HashMap<String, FightClass>();
+
+	public abstract ArrayList<ItemStack> getItems();
+
+	public abstract ArrayList<Ability> getAbilities();
+
+	public static void fightClassesArraySetup() {
+		Alchemist a = new Alchemist();
+		allClasses.put(a.getName(), a);
+	}
+
+	private ArrayList<Ability> abilities;
+	private ArrayList<ItemStack> items;
+	private String name;
+
+	public String getName() {
+		return this.name;
+	}
+
+	public FightClass(String name) {
+		this.name = name;
+		items = getItems();
+		abilities = getAbilities();
+		allClasses.put(this.name, this);
+	}
+
+	public static void initiateClass(Player sender, FightClass fightclass) {
+		sender.getInventory().addItem(arg0);
+	}
+
+}
