@@ -1,0 +1,66 @@
+package com.ngse.fight;
+
+import java.util.Iterator;
+import java.util.Map;
+
+import net.md_5.bungee.api.ChatColor;
+
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+
+import com.ngse.fight.classes.FightClass;
+
+public class Commands {
+
+	private Player sender;
+	private Command cmd;
+	private String commandLabel;
+	private String[] args;
+
+	public Commands(CommandSender sender, Command cmd, String commandLabel,
+			String[] args) {
+		this.sender = (Player) sender;
+		this.cmd = cmd;
+		this.commandLabel = commandLabel;
+		this.args = args;
+
+	}
+
+	public void help() {
+		sender.sendMessage("No one can help you...");
+	}
+
+	// /fight class <classname>
+	public void createPlayer() {
+		FIGHT.createPlayer(sender, args[1]);
+		FightClass f = (FightClass) sender.getMetadata("fightclass").get(0)
+				.value();
+		FIGHT.plugin.getLogger().info(sender.getName() + " : " + (f).getName());
+		sender.sendMessage(ChatColor.GOLD
+				+ "You have entered a new class! You are a " + ChatColor.WHITE
+				+ (f).getName());
+		FightClass.initiateClass(sender, f);
+	}
+
+	@SuppressWarnings("rawtypes")
+	// /fight class info all
+	public void getAllClassNames() {
+		sender.sendMessage("All Classes: ");
+		Iterator i = FightClass.allClasses.entrySet().iterator();
+		while (i.hasNext()) {
+			sender.sendMessage("- - " + ChatColor.GOLD
+					+ ((Map.Entry) i.next()).getKey());
+		}
+	}
+
+	@SuppressWarnings("rawtypes")
+	// /fight class info <classname>
+	public void getFightClassInfo() {
+		FightClass f = null;
+		Iterator i = FightClass.allClasses.entrySet().iterator();
+		while (i.hasNext()) {
+			if((String) ((Map.Entry) i.next()).getKey()));
+		}
+	}
+}

@@ -1,0 +1,10 @@
+name: FIGHT
+main: com.ngse.fight.FIGHT
+version: 1.00
+commands:
+   fight:
+      description: Creates you as a player
+      usage: /fight <FIGHT Command. <Class Name>
+   f:
+      description: Creates you as a player
+      usage: /f create <Class Name>
