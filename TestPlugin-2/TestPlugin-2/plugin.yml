@@ -7,4 +7,4 @@ commands:
       usage: /fight <FIGHT Command> <Class Name>
    f:
       description: Creates you as a player
-      usage: /fight <FIGHT Command> <Class Name>
+      usage: /f <FIGHT Command> <Class Name>
