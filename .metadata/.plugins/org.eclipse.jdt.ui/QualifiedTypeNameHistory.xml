@@ -8,4 +8,5 @@
 <fullyQualifiedTypeName name="java.util.Map.Entry"/>
 <fullyQualifiedTypeName name="net.minecraft.server.v1_8_R3.ItemStack"/>
 <fullyQualifiedTypeName name="org.bukkit.inventory.ItemStack"/>
+<fullyQualifiedTypeName name="com.ngse.fight.classes.FightClass"/>
 </qualifiedTypeNameHistroy>

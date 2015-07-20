@@ -36,7 +36,13 @@ public class Commands {
 	}
 
 	// /fight class <classname>
-	public void createPlayer() {
+	public boolean createPlayer() {
+		if (!FightClass.allClasses.containsKey(args[1])) {
+			sender.sendMessage(ChatColor.RED + "Not a valid class name");
+			sender.sendMessage(ChatColor.DARK_RED
+					+ "Check class names with /f class info all");
+			return false;
+		}
 		FIGHT.createPlayer(sender, args[1]);
 		FightClass f = (FightClass) sender.getMetadata("fightclass").get(0)
 				.value();
@@ -45,6 +51,7 @@ public class Commands {
 				+ "You have entered a new class! You are a " + ChatColor.WHITE
 				+ (f).getName());
 		FightClass.initiateClass(sender, f);
+		return false;
 	}
 
 	@SuppressWarnings("rawtypes")

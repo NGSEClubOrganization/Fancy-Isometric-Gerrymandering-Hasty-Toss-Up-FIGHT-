@@ -36,7 +36,7 @@ public class FIGHT extends JavaPlugin {
 
 	public static void createPlayer(Player p, String fightclassname) {
 		p.setMetadata("fightclass", new FixedMetadataValue(plugin,
-				FightClass.allClasses.get(fightclassname)));
+				new FightPlayer(p, fightclassname)));
 	}
 
 	public static void initClasses() {
