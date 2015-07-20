@@ -3,6 +3,6 @@ main: com.ngse.fight.FIGHT
 version: 1.00
 commands:
    fight:
-      description: Creates you as a player
+      description: /fight <FIGHT [arguments]
    f:
-      description: Creates you as a player
+      description: /f <FIGHT command> [arguments]
