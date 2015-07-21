@@ -1,0 +1,13 @@
+name: FIGHT
+main: com.ngse.fight.FIGHT
+version: 1.00
+commands:
+   fight:
+      description: /fight <FIGHT [arguments]
+   f:
+<<<<<<< HEAD
+      description: /f <FIGHT command> [arguments]
+=======
+      description: Creates you as a player
+      usage: /f <FIGHT Command> <Class Name>
+>>>>>>> refs/remotes/NGSEClubOrganization/master
