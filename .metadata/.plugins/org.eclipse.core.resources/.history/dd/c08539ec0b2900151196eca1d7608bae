@@ -1,7 +1,0 @@
-name: TestPlugin
-main: com.ngse.fight.FIGHT
-version: 1.00
-commands:
-   create:
-      description: Creates you as a player
-      usage: /create <Class Name>

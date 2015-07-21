@@ -1,5 +1,0 @@
-package com.ngse.fight.classes.mages;
-
-public class Shadow extends FightClass {
-
-}
