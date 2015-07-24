@@ -1,10 +1,12 @@
 package com.ngse.fight.classes;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 public abstract class Ability {
 
@@ -28,6 +30,8 @@ public abstract class Ability {
 
 	public abstract void effect(Player user);
 
+	public abstract void passiveEffect(Player user);
+
 	public String getName() {
 		return name;
 	}
@@ -48,11 +52,12 @@ public abstract class Ability {
 
 	public static ItemStack setupItem(Material m, Ability a) {
 		ItemStack i = new ItemStack(m, 1);
-		i.setType(m);
-		i.getItemMeta().setDisplayName(a.getName());
-		ArrayList<String> l = new ArrayList<String>();
+		ItemMeta im = i.getItemMeta();
+		im.setDisplayName(a.getName());
+		List<String> l = new ArrayList<String>();
 		l.add(a.getMID());
-		i.getItemMeta().setLore(l);
+		im.setLore(l);
+		i.setItemMeta(im);
 		return i;
 	}
 

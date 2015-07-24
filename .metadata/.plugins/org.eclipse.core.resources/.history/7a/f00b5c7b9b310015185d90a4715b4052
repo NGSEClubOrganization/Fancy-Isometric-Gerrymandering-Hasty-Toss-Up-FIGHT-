@@ -1,0 +1,9 @@
+package com.ngse.utilities;
+
+public class Direction {
+
+	public static void getOppDir(Player p) {
+		
+	}
+	
+}

@@ -1,0 +1,11 @@
+package com.ngse.fight;
+
+import org.bukkit.event.Listener;
+
+public class PlayerMovingListener implements Listener {
+	
+	public void onPlayerMove(PlayerMoveEvent e) {
+		
+	}
+
+}

@@ -1,0 +1,29 @@
+package com.ngse.fight.classes.mages;
+
+import java.util.ArrayList;
+
+import org.bukkit.inventory.ItemStack;
+
+import com.ngse.fight.classes.Ability;
+import com.ngse.fight.classes.FightClass;
+
+public class Teleporter extends FightClass {
+
+	public Teleporter() {
+		super("Teleporter");
+	}
+
+	@Override
+	public ArrayList<ItemStack> getItems() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Ability> getAbilities() {
+		ArrayList<Ability> as = new ArrayList<Ability>();
+		
+		return as;
+	}
+
+}

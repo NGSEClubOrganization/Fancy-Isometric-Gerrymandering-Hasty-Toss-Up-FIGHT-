@@ -1,0 +1,59 @@
+package com.ngse.fight.specials;
+
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.metadata.FixedMetadataValue;
+
+import com.ngse.fight.FIGHT;
+import com.ngse.fight.classes.Ability;
+import com.ngse.utilities.Toggle;
+
+public class Hover extends Ability {
+
+	public Hover() {
+		super("Hover", 2, true, "hov");
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public void effect(Player user, Player target) {
+		effect(user);
+	}
+
+	@Override
+	public void effect(Player user) {
+		// toggle hovering
+		if (user.hasMetadata("hovering")) {
+			user.setMetadata("hovering",
+					new FixedMetadataValue(FIGHT.plugin, ((Toggle) user
+							.getMetadata("hovering").get(0).value()).toggle()));
+			;
+		} else {
+			user.setMetadata("hovering", new FixedMetadataValue(FIGHT.plugin,
+					new Toggle(true)));
+		}
+	}
+
+	@Override
+	public ItemStack getItem() {
+		return Ability.setupItem(Material.FEATHER, this);
+	}
+
+	@Override
+	public void passiveEffect(Player user) {
+		Player p = user;
+		if (p.hasMetadata("hovering")) {
+			if (((Toggle) p.getMetadata("hovering").get(0).value()).b) {
+				Location l = p.getLocation();
+				for (int x = -1; x <= 1; x++) {
+					for (int z = -1; z <= 1; z++) {
+						l.add(x, 0, z);
+					}
+				}
+			}
+		}
+	}
+
+}

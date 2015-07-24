@@ -1,0 +1,15 @@
+package com.ngse.utilities;
+
+public class Toggle {
+
+	public boolean b;
+
+	public Toggle(boolean b) {
+		this.b = b;
+	}
+
+	public void toggle() {
+		b = !b;
+	}
+
+}

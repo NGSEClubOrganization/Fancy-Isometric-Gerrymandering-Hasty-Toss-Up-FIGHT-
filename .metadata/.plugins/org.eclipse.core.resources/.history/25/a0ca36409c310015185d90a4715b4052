@@ -1,0 +1,37 @@
+package com.ngse.fight.specials;
+
+import org.bukkit.Location;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+
+import com.ngse.fight.classes.Ability;
+import com.ngse.utilities.Direction;
+
+public class TeleportForward extends Ability {
+
+	public TeleportForward() {
+		super("Teleboost", 1, false, "telboo");
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public void effect(Player user, Player target) {
+		// teleport right behind the target
+		Location tloc = target.getLocation();
+		tloc.add(Direction.getOppDir(target));
+
+	}
+
+	@Override
+	public void effect(Player user) {
+		// teleport in the direction you are facing by 10 blocks
+		Location loc = user.getLocation();
+	}
+
+	@Override
+	public ItemStack getItem() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

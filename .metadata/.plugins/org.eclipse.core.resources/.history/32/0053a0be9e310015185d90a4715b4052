@@ -1,0 +1,33 @@
+package com.ngse.fight;
+
+import org.bukkit.entity.Player;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerMoveEvent;
+
+import com.ngse.utilities.Toggle;
+
+public class PlayerMovingListener implements Listener {
+
+	public void onPlayerMove(PlayerMoveEvent e) {
+		Player p = e.getPlayer();
+		
+		/*
+		 * Conditions to check:
+		 * 
+		 * - Flying
+		 * - Hovering
+		 * - 
+		 * 
+		 * 
+		 */
+		
+		if(p.hasMetadata("hovering")) {
+			if( ( (Toggle) p.getMetadata("hovering").get(0).value()).b ) {
+				
+			}
+		}
+		
+		
+	}
+
+}

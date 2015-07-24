@@ -1,0 +1,46 @@
+package com.ngse.fight;
+
+import org.bukkit.Location;
+import org.bukkit.entity.Player;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerMoveEvent;
+
+import com.ngse.fight.classes.Ability;
+import com.ngse.fight.classes.FightClass;
+import com.ngse.utilities.Toggle;
+
+public class PlayerMovingListener implements Listener {
+
+	public void onPlayerMove(PlayerMoveEvent e) {
+		Player p = e.getPlayer();
+
+		/*
+		 * Conditions to check:
+		 * 
+		 * - Flying - Hovering -
+		 */
+
+		FightClass f = FightClass.get(p);
+
+		if (f != null) {
+			for(Ability a : f.getAbilities()) {
+				if(a.isPassive) {
+					
+				}
+			}
+		}
+
+		if (p.hasMetadata("hovering")) {
+			if (((Toggle) p.getMetadata("hovering").get(0).value()).b) {
+				Location l = p.getLocation();
+				for (int x = -1; x <= 1; x++) {
+					for (int z = -1; z <= 1; z++) {
+
+					}
+				}
+			}
+		}
+
+	}
+
+}

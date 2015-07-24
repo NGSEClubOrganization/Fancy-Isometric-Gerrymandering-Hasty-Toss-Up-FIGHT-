@@ -1,0 +1,11 @@
+package com.ngse.fight.classes.mages;
+
+import com.ngse.fight.classes.FightClass;
+
+public class Teleporter extends FightClass {
+
+	public Teleporter() {
+		super("Teleporter");
+	}
+
+}

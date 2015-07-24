@@ -1,0 +1,35 @@
+package com.ngse.fight.specials;
+
+import org.bukkit.Material;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+
+import com.ngse.fight.classes.Ability;
+
+public class Hover extends Ability {
+
+	public Hover() {
+		super("Hover", 2, true, "hov");
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public void effect(Player user, Player target) {
+		
+	}
+
+	@Override
+	public void effect(Player user) {
+		if(user.hasMetadata("hovering")) {
+			
+		} else {
+			user.setMetadata("hovering", true);
+		}
+	}
+
+	@Override
+	public ItemStack getItem() {
+		return Ability.setupItem(Material.ARROW, this);
+	}
+
+}

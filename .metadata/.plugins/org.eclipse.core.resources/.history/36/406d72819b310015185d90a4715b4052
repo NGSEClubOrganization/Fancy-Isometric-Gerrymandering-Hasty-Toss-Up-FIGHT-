@@ -1,0 +1,11 @@
+package com.ngse.utilities;
+
+import org.bukkit.entity.Player;
+
+public class Direction {
+
+	public static void getOppDir(Player p) {
+
+	}
+
+}

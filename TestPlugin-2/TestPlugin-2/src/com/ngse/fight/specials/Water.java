@@ -25,8 +25,13 @@ public class Water extends Ability {
 
 	@Override
 	public ItemStack getItem() {
-		setupItem(Material.BUCKET, this);
-		return null;
+		return setupItem(Material.BUCKET, this);
+	}
+
+	@Override
+	public void passiveEffect(Player user) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

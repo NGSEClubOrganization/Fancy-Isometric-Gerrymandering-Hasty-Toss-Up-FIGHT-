@@ -1,0 +1,7 @@
+package com.ngse.utilities;
+
+public enum CardinalDirection {
+	
+	NORTH, SOUTH, EAST, WEST;
+
+}

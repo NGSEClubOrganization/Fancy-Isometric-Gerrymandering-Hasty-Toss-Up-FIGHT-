@@ -9,14 +9,17 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import com.ngse.fight.classes.mages.Alchemist;
+import com.ngse.fight.classes.mages.Shadow;
+import com.ngse.fight.classes.mages.Teleporter;
 
 public abstract class FightClass {
 
 	public static HashMap<String, FightClass> allClasses = new HashMap<String, FightClass>();
 
 	public static void fightClassesArraySetup() {
-		Alchemist a = new Alchemist();
-		allClasses.put(a.getName(), a);
+		Alchemist ach = new Alchemist();
+		Shadow sha = new Shadow();
+		Teleporter tel = new Teleporter();
 	}
 
 	public abstract ArrayList<ItemStack> getItems();
@@ -51,11 +54,11 @@ public abstract class FightClass {
 		}
 	}
 
-	public static boolean useAbility(Player sender) {
+	public boolean useAbility(Player sender) {
 		ItemStack i = sender.getItemInHand();
 
 		// sees if they are fightclassed
-		FightClass f = (FightClass) sender.getMetadata("fightclass");
+		FightClass f = FightClass.get(sender);
 		if (f != null) {
 			// goes through each ability, seeeing if any of the MID's match the
 			// lore of the item
@@ -90,5 +93,13 @@ public abstract class FightClass {
 			return false;
 		}
 		return true;
+	}
+
+	public static FightClass get(Player p) {
+		FightClass f = null;
+		if (p.hasMetadata("fightclass")) {
+			f = (FightClass) p.getMetadata("fightclass").get(0).value();
+		}
+		return f;
 	}
 }

@@ -1,7 +1,10 @@
 package com.ngse.fight;
 
+import java.util.ArrayList;
+
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.entity.Player;
+import org.bukkit.event.Listener;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -11,17 +14,26 @@ public class FIGHT extends JavaPlugin {
 
 	public static CommandExecutor commandExecutor;
 
+	public static ArrayList<Listener> listeners = new ArrayList<Listener>();
+
 	public static JavaPlugin plugin;
 
 	public void onEnable() {
 		plugin = this;
 		this.getLogger().info("FIGHT enabled!");
+
 		// commandexecutor
 		initCommands();
+
 		// listeners
+		initListeners();
 
 		// all initializing stuff
 		initClasses();
+	}
+
+	public void onDisable() {
+		getLogger().info("FIGHT disabled");
 	}
 
 	private void initCommands() {
@@ -30,8 +42,14 @@ public class FIGHT extends JavaPlugin {
 		this.getCommand("f").setExecutor(commandExecutor);
 	}
 
-	public void onDisable() {
-		getLogger().info("FIGHT disabled");
+	public void initListeners() {
+		setupListener(new ItemUseForAbilityListener());
+		setupListener(new PlayerMovingListener());
+	}
+
+	public static void initClasses() {
+		// add all classes to FightClass.allClasses
+		FightClass.fightClassesArraySetup();
 	}
 
 	public static void createPlayer(Player p, String fightclassname) {
@@ -39,8 +57,8 @@ public class FIGHT extends JavaPlugin {
 				FightClass.allClasses.get(fightclassname)));
 	}
 
-	public static void initClasses() {
-		// add all classes to FightClass.allClasses
-		FightClass.fightClassesArraySetup();
+	public static void setupListener(Listener l) {
+		listeners.add(l);
+		plugin.getServer().getPluginManager().registerEvents(l, plugin);
 	}
 }

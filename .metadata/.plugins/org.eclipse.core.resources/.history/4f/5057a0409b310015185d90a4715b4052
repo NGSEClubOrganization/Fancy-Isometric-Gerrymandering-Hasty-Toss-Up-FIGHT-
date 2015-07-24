@@ -1,0 +1,11 @@
+package com.ngse.utilities;
+
+public enum CardinalDirection {
+
+	NORTH, SOUTH, EAST, WEST;
+
+	public static CardinalDirection getCardinalDirection(Player p) {
+		CardinalDirection cd = CardinalDirection.NORTH;
+	}
+
+}

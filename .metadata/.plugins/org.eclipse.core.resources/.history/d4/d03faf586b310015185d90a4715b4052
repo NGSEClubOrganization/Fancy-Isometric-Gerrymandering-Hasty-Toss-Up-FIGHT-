@@ -1,0 +1,30 @@
+package com.ngse.fight;
+
+import org.bukkit.event.Listener;
+
+public class ItemUseForAbilityListener implements Listener {
+
+	// public void onPlayerInteract(PlayerInteractEvent evt) {
+	// Player p = evt.getPlayer();
+	//
+	// p.sendMessage("Hey got the event, heres your info: "
+	// + ((FightClass) p.getMetadata("fightclass")).getAbilities()
+	// .toString());
+	//
+	// // have to do this so dont cast null to FightClass by accident
+	// FightClass f = p.getMetadata("fightclass").get(0) != null ? (FightClass)
+	// p
+	// .getMetadata("fightclass").get(0) : null;
+	//
+	// if (f != null) {
+	// f.useAbility(p);
+	// }
+	// }
+
+	public void onPlayerConsume(PlayerConsumeEvent evt) {
+
+		
+		
+	}
+
+}

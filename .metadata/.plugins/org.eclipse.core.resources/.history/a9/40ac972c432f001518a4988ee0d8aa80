@@ -1,0 +1,23 @@
+package com.ngse.fight;
+
+import org.bukkit.entity.Player;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerInteractEvent;
+
+import com.ngse.fight.classes.FightClass;
+
+public class ItemUseForAbilityListener implements Listener {
+
+	public static void onPlayerInteractEvent(PlayerInteractEvent evt) {
+		Player p = evt.getPlayer();
+		
+		// have to do this so dont cast null to FightClass by accident
+		FightClass f = p.getMetadata("fightclass").get(0) != null ? (FightClass) p
+				.getMetadata("fightclass").get(0) : null;
+				
+		if (f != null) {
+			
+		}
+	}
+
+}

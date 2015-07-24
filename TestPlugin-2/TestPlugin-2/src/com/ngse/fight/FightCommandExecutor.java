@@ -21,6 +21,8 @@ public class FightCommandExecutor implements CommandExecutor {
 				if (args.length == 1) {
 					if (args[0].equalsIgnoreCase("help")) {
 						c.help();
+					} else if (args[0].equalsIgnoreCase("t")) {
+						c.tester();
 					}
 				} else if (args.length == 2) {
 					// become a certain class
