@@ -27,7 +27,7 @@ public class PlayerMovingListener implements Listener {
 					 * if can pay cost, passiveEffect keeps going
 					 */
 					// use ability
-					((PassiveAbility) a).effect(p);
+					((PassiveAbility) a).passiveEffect(p);
 				}
 			}
 		}

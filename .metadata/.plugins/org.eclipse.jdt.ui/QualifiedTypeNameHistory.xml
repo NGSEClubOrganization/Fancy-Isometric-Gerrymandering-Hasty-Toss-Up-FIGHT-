@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
 <fullyQualifiedTypeName name="org.bukkit.entity.Entity"/>
-<fullyQualifiedTypeName name="com.ngse.fight.classes.Ability"/>
 <fullyQualifiedTypeName name="java.util.Map.Entry"/>
 <fullyQualifiedTypeName name="net.minecraft.server.v1_8_R3.ItemStack"/>
 <fullyQualifiedTypeName name="org.bukkit.inventory.ItemStack"/>
 <fullyQualifiedTypeName name="com.ngse.fight.specials.Water"/>
-<fullyQualifiedTypeName name="org.bukkit.Material"/>
 <fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="org.bukkit.potion.PotionType"/>
+<fullyQualifiedTypeName name="com.ngse.fight.classes.Ability"/>
+<fullyQualifiedTypeName name="org.bukkit.util.Vector"/>
+<fullyQualifiedTypeName name="com.ngse.utilities.Direction"/>
+<fullyQualifiedTypeName name="org.bukkit.event.Listener"/>
+<fullyQualifiedTypeName name="org.bukkit.Location"/>
 <fullyQualifiedTypeName name="com.ngse.fight.classes.FightClass"/>
+<fullyQualifiedTypeName name="org.bukkit.block.Block"/>
+<fullyQualifiedTypeName name="org.bukkit.metadata.MetadataValue"/>
+<fullyQualifiedTypeName name="org.bukkit.Material"/>
+<fullyQualifiedTypeName name="net.md_5.bungee.api.ChatColor"/>
+<fullyQualifiedTypeName name="com.ngse.fight.Finals"/>
 <fullyQualifiedTypeName name="com.ngse.fight.FIGHT"/>
 </qualifiedTypeNameHistroy>

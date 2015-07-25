@@ -1,0 +1,40 @@
+package com.ngse.fight.specials;
+
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+
+import com.ngse.fight.classes.Ability;
+
+public class Water extends Ability {
+
+	private static final int RANGE = 5;
+
+	public Water() {
+		super("Water", 1, false, "wat");
+	}
+
+	@Override
+	public void effect(Player user, Player target) {
+		effect(user);
+	}
+
+	@Override
+	public void effect(Player user) {
+		Location look = user.getLocation();
+		Location tlook = look;
+		Vector v = tlook.add(tlook).getDirection().multiply(RANGE);
+		if (tlook.getBlock().getType().isSolid())
+			for (int x = RANGE; x >= 2; x--) {
+
+			}
+		look.add(look.getDirection().multiply(RANGE));
+
+	}
+
+	@Override
+	public ItemStack getItem() {
+		return setupItem(Material.BUCKET, this);
+	}
+}

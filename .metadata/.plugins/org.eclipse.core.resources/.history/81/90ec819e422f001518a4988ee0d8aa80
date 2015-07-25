@@ -1,7 +1,0 @@
-package com.ngse.fight;
-
-import org.bukkit.event.Listener;
-
-public class ItemUseForAbilityListener implements Listener {
-
-}

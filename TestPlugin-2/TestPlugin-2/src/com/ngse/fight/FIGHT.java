@@ -61,4 +61,8 @@ public class FIGHT extends JavaPlugin {
 		listeners.add(l);
 		plugin.getServer().getPluginManager().registerEvents(l, plugin);
 	}
+
+	public static void log(String m) {
+		plugin.getLogger().info(m);
+	}
 }

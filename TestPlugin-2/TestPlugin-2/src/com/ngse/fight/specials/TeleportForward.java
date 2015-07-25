@@ -1,5 +1,6 @@
 package com.ngse.fight.specials;
 
+import org.bukkit.Effect;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -10,31 +11,51 @@ import com.ngse.utilities.Direction;
 
 public class TeleportForward extends Ability {
 
+	private static final int MAXHEIGHT = 2;
+	private static final int RANGE = 3;
+
 	public TeleportForward() {
-		super("Teleboost", 1, false, "telboo");
-		// TODO Auto-generated constructor stub
+		super("Teleboost Wand", 1, false, "telboo");
 	}
 
 	@Override
 	public void effect(Player user, Player target) {
 		// teleport right behind the target
 		Location tloc = target.getLocation();
-		tloc.add(Direction.getOppDir(target));
+		tloc = tloc.add(Direction.getOppDir(target));
+		user.teleport(tloc);
 	}
 
 	@Override
 	public void effect(Player user) {
-		// teleport in the direction you are facing by 10 blocks
+		// teleport in the direction you are facing by RANGE blocks
 		Location loc = user.getLocation();
-		loc.add(loc.getDirection().multiply(10));
-		user.teleport(loc);
+		loc.add(loc.getDirection().multiply(RANGE));
+
+		// check where you are trying to go. If its not air, then will add 1 to
+		// y and try again. If not good MaxHeigh blocks above, then fails
+		boolean safe = false;
+		for (int x = 0; x <= MAXHEIGHT; x++) {
+			loc.add(0, x, 0);
+			if (!loc.getBlock().getType().isSolid()) {
+				safe = true;
+				break;
+			}
+		}
+		if (safe) {
+			Hover.destroyHoveringBlock(user);
+			user.getWorld().playEffect(user.getLocation(), Effect.DOOR_TOGGLE,
+					10);
+			user.teleport(loc);
+			user.getWorld().playEffect(user.getLocation(), Effect.DOOR_TOGGLE,
+					10);
+		}
+
 	}
 
 	@Override
 	public ItemStack getItem() {
-		Ability.setupItem(Material.ARROW, this);
-		return null;
+		return Ability.setupItem(Material.ARROW, this);
 	}
-
 
 }

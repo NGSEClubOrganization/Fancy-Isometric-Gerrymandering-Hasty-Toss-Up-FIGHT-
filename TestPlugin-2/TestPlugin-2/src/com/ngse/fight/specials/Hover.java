@@ -4,7 +4,6 @@ import net.md_5.bungee.api.ChatColor;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.FixedMetadataValue;
@@ -18,7 +17,6 @@ public class Hover extends PassiveAbility {
 
 	public Hover() {
 		super("Hover", 2, true, "hov");
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -29,14 +27,12 @@ public class Hover extends PassiveAbility {
 	@Override
 	public void effect(Player user) {
 		// toggle hovering
-		if (user.hasMetadata("hovering")) {
-			user.setMetadata("hovering",
-					new FixedMetadataValue(FIGHT.plugin, ((Toggle) user
-							.getMetadata("hovering").get(0).value()).toggle()));
+		if (user.hasMetadata(getName())) {
+			user.setMetadata(getName(), new FixedMetadataValue(FIGHT.plugin,
+					Toggle.fromMeta(user, getName()).toggle()));
 			;
 		} else {
-			user.setMetadata("hovering", new FixedMetadataValue(FIGHT.plugin,
-					new Toggle(true)));
+			Toggle.setMetaToggle(user, getName(), true);
 		}
 	}
 
@@ -49,34 +45,24 @@ public class Hover extends PassiveAbility {
 	public void passiveEffect(Player user) {
 		Player p = user;
 
-		if (p.hasMetadata("hovering")) {
-			if (((Toggle) p.getMetadata("hovering").get(0).value()).b) {
-				p.sendMessage("hovering");
+		if (p.hasMetadata(getName())) {
+			if (isActive(user)) {
+				// logging
+				p.sendMessage(getName());
 				Location l = p.getLocation();
-				for (int x = -2; x <= 2; x++) {
-					for (int z = -1; z <= 1; z++) {
-						Location nl = l.add(x, 0, z);
-						Block b = nl.getBlock();
-						if (x == 2 || x == -2 || z == 2 || z == -2) {
-							// if on the outer edges, set the block to its
-							// metadata'd original block (if it has that)
-							Block c = b.hasMetadata("originalblock") ? (Block) b
-									.getMetadata("originalblock") : null;
-							if (c != null) {
-								nl.getBlock().setType(c.getType());
-							}
-						} else {
-							// else, turn the block to glass and set its
-							// "originalblock" metadata to what it was
-							// originally
-							nl.getBlock().setType(Material.GLASS, false);
-							nl.getBlock().setMetadata("originalblock",
-									new FixedMetadataValue(FIGHT.plugin, b));
-						}
-					}
+				Location below = l.add(0, -1, 0);
+
+				destroyHoveringBlock(user);
+
+				if (!below.getBlock().getType().isSolid()) {
+					// if the block isnt solid, then set it to glass
+					below.getBlock().setType(Material.GLASS);
+					below.getBlock().getState().setType(Material.GLASS);
+					below.getBlock().getState().update();
 				}
 			}
-			if (((Toggle) p.getMetadata("hovering").get(0).value()).b) {
+
+			if (Toggle.fromMeta(p, getName()).b) {
 				p.sendMessage(ChatColor.LIGHT_PURPLE + "[HOVERING] "
 						+ ChatColor.GREEN + "ON");
 			} else {
@@ -86,23 +72,58 @@ public class Hover extends PassiveAbility {
 		}
 	}
 
+	public static void destroyHoveringBlock(Player p) {
+		Location l = p.getLocation();
+		Location below = l.add(0, -1, 0);
+
+		// checks through all blocks around you, but right under you
+		double y = 0;
+		turnToAir(below, -1, y, -1);
+		turnToAir(below, -1, y, 1);
+		turnToAir(below, 1, y, -1);
+		turnToAir(below, 1, y, 1);
+		turnToAir(below, 0, y, -1);
+		turnToAir(below, 0, y, 1);
+		turnToAir(below, -1, y, 0);
+		turnToAir(below, 1, y, 0);
+		y = -1;
+		turnToAir(below, -1, y, -1);
+		turnToAir(below, -1, y, 1);
+		turnToAir(below, 1, y, -1);
+		turnToAir(below, 1, y, 1);
+		turnToAir(below, 0, y, -1);
+		turnToAir(below, 0, y, 1);
+		turnToAir(below, -1, y, 0);
+		turnToAir(below, 1, y, 0);
+	}
+
+	private static void turnToAir(Location below, double x, double y, double z) {
+		Location nl = new Location(below.getWorld(), below.getX() + x,
+				below.getY() + y, below.getZ() + z);
+		if (nl.getBlock().getType().equals(Material.GLASS)) {
+			nl.getBlock().setType(Material.AIR);
+			nl.getBlock().getState().setType(Material.AIR);
+			nl.getBlock().getState().update();
+		}
+	}
+
 	@Override
 	public void endPassiveEffect(Player p) {
-		Location l = p.getLocation();
-
-		for (int x = -2; x <= 2; x++) {
-			for (int z = -1; z <= 1; z++) {
-				Location nl = l.add(x, 0, z);
-				Block b = nl.getBlock();
-				// set the block to its
-				// metadata'd original block (if it has that)
-				Block c = b.hasMetadata("originalblock") ? (Block) b
-						.getMetadata("originalblock") : null;
-				if (c != null) {
-					nl.getBlock().setType(c.getType());
-				}
-			}
-		}
+		// Location l = p.getLocation();
+		//
+		// for (int x = -2; x <= 2; x++) {
+		// for (int z = -1; z <= 1; z++) {
+		// Location nl = l.add(x, 0, z);
+		// Block b = nl.getBlock();
+		// // set the block to its
+		// // metadata'd original block (if it has that)
+		// Block c = b.hasMetadata("originalblock") ? (Block) b
+		// .getMetadata("originalblock") : null;
+		// if (c != null) {
+		// nl.getBlock().setType(c.getType());
+		// }
+		// }
+		// }
 	}
 
 }

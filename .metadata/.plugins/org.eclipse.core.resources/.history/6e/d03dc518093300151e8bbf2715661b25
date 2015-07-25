@@ -1,0 +1,23 @@
+package com.ngse.utilities;
+
+import org.bukkit.entity.Player;
+
+public class Toggle {
+
+	public boolean b;
+
+	public Toggle(boolean b) {
+		this.b = b;
+	}
+
+	public Toggle toggle() {
+		b = !b;
+		return this;
+	}
+
+	public static Toggle fromMeta(Player p, String metadataKey) {
+		return p.hasMetadata(metadataKey) ? (Toggle) (p
+				.getMetadata(metadataKey).get(0).value()) : null;
+	}
+
+}

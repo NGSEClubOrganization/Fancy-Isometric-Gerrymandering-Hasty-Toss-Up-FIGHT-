@@ -1,8 +1,0 @@
-name: FIGHT
-main: com.ngse.fight.FIGHT
-version: 1.00
-commands:
-   fight:
-      description: Creates you as a player
-   f:
-      description: Creates you as a player

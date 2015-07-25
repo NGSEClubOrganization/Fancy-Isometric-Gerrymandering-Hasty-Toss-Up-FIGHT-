@@ -1,0 +1,60 @@
+package com.ngse.fight.specials;
+
+import org.bukkit.Effect;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+
+import com.ngse.fight.classes.Ability;
+import com.ngse.utilities.Direction;
+
+public class TeleportForward extends Ability {
+
+	public static final int MAXHEIGHT = 10;
+	public static final int RANGE = 10;
+
+	public TeleportForward() {
+		super("Teleboost", 1, false, "telboo");
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public void effect(Player user, Player target) {
+		// teleport right behind the target
+		Location tloc = target.getLocation();
+		tloc.add(Direction.getOppDir(target));
+	}
+
+	@Override
+	public void effect(Player user) {
+		user.getWorld().playEffect(user.getLocation(), Effect.DOOR_TOGGLE, 10);
+
+		// teleport in the direction you are facing by RANGE blocks
+		Location loc = user.getLocation();
+		loc.add(loc.getDirection().multiply(RANGE));
+
+		// check where you are trying to go. If its not air, then will add 1 to
+		// y and try again. If not good MaxHeigh blocks above, then fails
+		boolean safe = false;
+		for (int x = 0; x <= MAXHEIGHT; x++) {
+			loc.add(0, x, 0);
+			if (!loc.getBlock().getType().isSolid()) {
+				safe = true;
+				break;
+			}
+		}
+		if (safe) {
+			user.getWorld().playEffect(user.getLocation(), Effect.STEP_SOUND, Material.REDSTONE);
+			user.teleport(loc);
+			user.t
+		}
+
+	}
+
+	@Override
+	public ItemStack getItem() {
+		return Ability.setupItem(Material.ARROW, this);
+	}
+
+}
