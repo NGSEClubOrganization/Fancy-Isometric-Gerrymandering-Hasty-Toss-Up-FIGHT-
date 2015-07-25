@@ -19,12 +19,25 @@ public class FightCommandExecutor implements CommandExecutor {
 					|| commandLabel.equalsIgnoreCase("f")) {
 
 				if (args.length == 1) {
-					c.help();
+					if (args[0].equalsIgnoreCase("help")) {
+						c.help();
+					} else if (args[0].equalsIgnoreCase("t")) {
+						c.tester();
+					}
 				} else if (args.length == 2) {
-					if (args[0].equalsIgnoreCase("create")) {
+					// become a certain class
+					if (args[0].equalsIgnoreCase("class")) {
 						c.createPlayer();
 					}
-
+				} else if (args.length == 3) {
+					if (args[0].equalsIgnoreCase("class")
+							&& args[1].equalsIgnoreCase("info")) {
+						if (args[2].equalsIgnoreCase("all")) {
+							c.getAllClassNames();
+						} else {
+							c.getFightClassInfo();
+						}
+					}
 				}
 			}
 		}

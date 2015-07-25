@@ -1,10 +1,14 @@
 package com.ngse.fight.classes;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+
+import com.ngse.fight.Finals;
 
 public abstract class Ability {
 
@@ -36,6 +40,23 @@ public abstract class Ability {
 		return level;
 	}
 
+	public int getCost() {
+		return (int) (level * Finals.xpCostPerAbilityLevel);
+	}
+
+	/*
+	 * @Return: True means that the cost was subtracted and the ability should
+	 * be activated. False mean that the cost > exp and the ability should not
+	 * be activated
+	 */
+	public boolean useCost(Player p) {
+		if (p.getExp() >= this.getCost()) {
+			p.setExp(p.getExp() - this.getCost());
+			return true;
+		}
+		return false;
+	}
+
 	public boolean isPassive() {
 		return isPassive;
 	}
@@ -48,11 +69,12 @@ public abstract class Ability {
 
 	public static ItemStack setupItem(Material m, Ability a) {
 		ItemStack i = new ItemStack(m, 1);
-		i.setType(m);
-		i.getItemMeta().setDisplayName(a.getName());
-		ArrayList<String> l = new ArrayList<String>();
+		ItemMeta im = i.getItemMeta();
+		im.setDisplayName(a.getName());
+		List<String> l = new ArrayList<String>();
 		l.add(a.getMID());
-		i.getItemMeta().setLore(l);
+		im.setLore(l);
+		i.setItemMeta(im);
 		return i;
 	}
 
