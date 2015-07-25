@@ -36,10 +36,5 @@ public class TeleportForward extends Ability {
 		return null;
 	}
 
-	@Override
-	public void passiveEffect(Player user) {
-		// TODO Auto-generated method stub
-		
-	}
 
 }

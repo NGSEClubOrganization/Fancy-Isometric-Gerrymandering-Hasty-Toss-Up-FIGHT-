@@ -1,0 +1,8 @@
+package com.ngse.fight.classes;
+
+public interface Passive {
+
+	public abstract void passiveEffect(Player p);
+	public abstract void endPassiveEffect(Player p);
+	
+}

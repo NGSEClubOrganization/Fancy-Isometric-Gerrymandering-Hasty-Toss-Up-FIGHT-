@@ -28,10 +28,4 @@ public class Water extends Ability {
 		return setupItem(Material.BUCKET, this);
 	}
 
-	@Override
-	public void passiveEffect(Player user) {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

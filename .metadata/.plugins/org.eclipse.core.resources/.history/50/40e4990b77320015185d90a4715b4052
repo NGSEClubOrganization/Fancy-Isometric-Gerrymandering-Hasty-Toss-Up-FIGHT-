@@ -1,0 +1,12 @@
+package com.ngse.fight.classes;
+
+public abstract class PassiveAbility extends Ability {
+
+	public PassiveAbility() {
+		super(name, level, isPassive, MID);
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+
+}

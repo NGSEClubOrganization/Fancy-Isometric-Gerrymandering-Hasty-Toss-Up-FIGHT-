@@ -1,0 +1,21 @@
+package com.ngse.fight.classes;
+
+import org.bukkit.entity.Player;
+
+public interface Passive {
+
+	public abstract void passiveEffect(Player p);
+
+	public abstract void endPassiveEffect(Player p);
+	
+	public boolean usePassiveAbility(Player sender, Ability a) {
+		if (a.useCost(sender)) {
+			a.passiveEffect(sender);
+			return true;
+		} else {
+			a.endPassiveEffect(sender);
+		}
+		return true;
+	}
+
+}

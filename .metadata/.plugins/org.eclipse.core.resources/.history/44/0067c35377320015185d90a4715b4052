@@ -1,0 +1,15 @@
+package com.ngse.fight.classes;
+
+import org.bukkit.entity.Player;
+
+public abstract class PassiveAbility extends Ability {
+
+	public PassiveAbility(String name, int level, boolean isPassive, String MID) {
+		super(name, level, isPassive, MID);
+	}
+
+	public abstract void passveEffect(Player p);
+
+	public abstract void endPassiveEffect(Player p);
+
+}

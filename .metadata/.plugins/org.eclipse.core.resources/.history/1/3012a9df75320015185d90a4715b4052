@@ -1,0 +1,5 @@
+package com.ngse.fight.classes;
+
+public interface Passive {
+
+}

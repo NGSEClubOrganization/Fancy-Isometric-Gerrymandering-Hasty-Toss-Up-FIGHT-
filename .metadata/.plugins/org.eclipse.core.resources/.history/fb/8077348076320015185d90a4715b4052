@@ -1,0 +1,11 @@
+package com.ngse.fight.classes;
+
+import org.bukkit.entity.Player;
+
+public interface Passive {
+
+	public abstract void passiveEffect(Player p);
+
+	public abstract void endPassiveEffect(Player p);
+
+}

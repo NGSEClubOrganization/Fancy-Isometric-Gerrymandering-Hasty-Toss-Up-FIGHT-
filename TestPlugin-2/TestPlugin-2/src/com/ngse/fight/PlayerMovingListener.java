@@ -7,6 +7,7 @@ import org.bukkit.event.player.PlayerMoveEvent;
 
 import com.ngse.fight.classes.Ability;
 import com.ngse.fight.classes.FightClass;
+import com.ngse.fight.classes.PassiveAbility;
 
 public class PlayerMovingListener implements Listener {
 
@@ -21,11 +22,14 @@ public class PlayerMovingListener implements Listener {
 
 			// check passive abilities
 			for (Ability a : f.getAbilities()) {
-				if (a.isPassive) {
-					a.passiveEffect(p);
+				if (a instanceof PassiveAbility) {
+					/*
+					 * if can pay cost, passiveEffect keeps going
+					 */
+					// use ability
+					((PassiveAbility) a).effect(p);
 				}
 			}
 		}
 	}
-
 }

@@ -36,10 +36,4 @@ public class GiveRandomPotion extends Ability {
 	public ItemStack getItem() {
 		return setupItem(Material.STICK, this);
 	}
-
-	@Override
-	public void passiveEffect(Player user) {
-		// TODO Auto-generated method stub
-		
-	}
 }

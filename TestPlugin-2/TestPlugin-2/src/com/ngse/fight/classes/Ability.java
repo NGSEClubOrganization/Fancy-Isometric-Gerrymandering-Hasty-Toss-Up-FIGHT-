@@ -32,8 +32,6 @@ public abstract class Ability {
 
 	public abstract void effect(Player user);
 
-	public abstract void passiveEffect(Player user);
-
 	public String getName() {
 		return name;
 	}
@@ -44,6 +42,19 @@ public abstract class Ability {
 
 	public int getCost() {
 		return (int) (level * Finals.xpCostPerAbilityLevel);
+	}
+
+	/*
+	 * @Return: True means that the cost was subtracted and the ability should
+	 * be activated. False mean that the cost > exp and the ability should not
+	 * be activated
+	 */
+	public boolean useCost(Player p) {
+		if (p.getExp() >= this.getCost()) {
+			p.setExp(p.getExp() - this.getCost());
+			return true;
+		}
+		return false;
 	}
 
 	public boolean isPassive() {

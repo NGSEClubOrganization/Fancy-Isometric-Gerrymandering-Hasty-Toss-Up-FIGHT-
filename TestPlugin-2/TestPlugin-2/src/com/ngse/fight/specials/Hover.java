@@ -11,9 +11,10 @@ import org.bukkit.metadata.FixedMetadataValue;
 
 import com.ngse.fight.FIGHT;
 import com.ngse.fight.classes.Ability;
+import com.ngse.fight.classes.PassiveAbility;
 import com.ngse.utilities.Toggle;
 
-public class Hover extends Ability {
+public class Hover extends PassiveAbility {
 
 	public Hover() {
 		super("Hover", 2, true, "hov");
@@ -47,8 +48,10 @@ public class Hover extends Ability {
 	@Override
 	public void passiveEffect(Player user) {
 		Player p = user;
+
 		if (p.hasMetadata("hovering")) {
 			if (((Toggle) p.getMetadata("hovering").get(0).value()).b) {
+				p.sendMessage("hovering");
 				Location l = p.getLocation();
 				for (int x = -2; x <= 2; x++) {
 					for (int z = -1; z <= 1; z++) {
@@ -79,6 +82,25 @@ public class Hover extends Ability {
 			} else {
 				p.sendMessage(ChatColor.LIGHT_PURPLE + "[HOVERING] "
 						+ ChatColor.RED + "OFF");
+			}
+		}
+	}
+
+	@Override
+	public void endPassiveEffect(Player p) {
+		Location l = p.getLocation();
+
+		for (int x = -2; x <= 2; x++) {
+			for (int z = -1; z <= 1; z++) {
+				Location nl = l.add(x, 0, z);
+				Block b = nl.getBlock();
+				// set the block to its
+				// metadata'd original block (if it has that)
+				Block c = b.hasMetadata("originalblock") ? (Block) b
+						.getMetadata("originalblock") : null;
+				if (c != null) {
+					nl.getBlock().setType(c.getType());
+				}
 			}
 		}
 	}
