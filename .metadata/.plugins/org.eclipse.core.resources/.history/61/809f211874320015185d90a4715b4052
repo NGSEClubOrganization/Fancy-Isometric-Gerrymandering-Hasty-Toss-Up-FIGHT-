@@ -43,7 +43,7 @@ public abstract class Ability {
 	}
 
 	public int getCost() {
-		return (int) (level * Finals.xpCostPerAbilityLevel);
+		return level * Finals.xpCostPerAbilityLevel;
 	}
 
 	public boolean isPassive() {

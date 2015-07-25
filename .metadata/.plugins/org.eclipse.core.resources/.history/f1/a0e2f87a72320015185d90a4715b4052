@@ -8,8 +8,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import com.ngse.fight.Finals;
-
 public abstract class Ability {
 
 	public int level;
@@ -40,10 +38,6 @@ public abstract class Ability {
 
 	public int getLevel() {
 		return level;
-	}
-
-	public int getCost() {
-		return (int) (level * Finals.xpCostPerAbilityLevel);
 	}
 
 	public boolean isPassive() {

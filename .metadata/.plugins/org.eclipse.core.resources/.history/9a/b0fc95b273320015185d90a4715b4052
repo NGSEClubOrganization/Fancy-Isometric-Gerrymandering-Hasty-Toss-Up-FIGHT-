@@ -13,13 +13,16 @@ public class PlayerMovingListener implements Listener {
 	@EventHandler
 	public void onPlayerMove(PlayerMoveEvent e) {
 		Player p = e.getPlayer();
+		
+		// recharge xp
+		
+		
+		
+		
 		FightClass f = FightClass.get(p);
 
+		// check passive abilities
 		if (f != null) {
-			// recharge xp (mana / stanima)
-			p.setExp(p.getExp() + Finals.xpCharge);
-
-			// check passive abilities
 			for (Ability a : f.getAbilities()) {
 				if (a.isPassive) {
 					a.passiveEffect(p);

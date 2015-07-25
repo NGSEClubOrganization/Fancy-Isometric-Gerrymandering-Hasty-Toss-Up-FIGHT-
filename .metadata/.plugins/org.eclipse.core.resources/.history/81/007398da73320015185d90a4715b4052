@@ -15,10 +15,11 @@ public class PlayerMovingListener implements Listener {
 		Player p = e.getPlayer();
 		FightClass f = FightClass.get(p);
 
-		if (f != null) {
-			// recharge xp (mana / stanima)
-			p.setExp(p.getExp() + Finals.xpCharge);
 
+		if (f != null) {
+
+			// recharge xp (mana / stanima)
+			p.setExp(p.getExp() + 20);
 			// check passive abilities
 			for (Ability a : f.getAbilities()) {
 				if (a.isPassive) {

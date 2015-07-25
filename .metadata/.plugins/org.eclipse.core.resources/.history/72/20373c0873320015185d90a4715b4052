@@ -2,7 +2,9 @@ package com.ngse.fight.classes;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
@@ -64,7 +66,27 @@ public abstract class FightClass {
 				if (i.getItemMeta().getLore().get(0)
 						.equalsIgnoreCase(a.getMID())) {
 					// use ability
-					a.effect(sender);
+
+					// checks for nearby players
+					List<Entity> nearbyPlayers = sender.getNearbyEntities(7, 7,
+							7);
+					for (Entity e : nearbyPlayers) {
+						if (!(e instanceof Player)) {
+							nearbyPlayers.remove(e);
+						}
+						if (nearbyPlayers.size() == 0)
+							break;
+					}
+
+					// if no players nearby, does normal effect
+					if (nearbyPlayers.size() == 0) {
+						a.effect(sender);
+					} else {
+						// effect all players in radius
+						for (Entity p : nearbyPlayers) {
+							a.effect(sender, (Player) p);
+						}
+					}
 				}
 			}
 		} else {
@@ -73,27 +95,6 @@ public abstract class FightClass {
 		return true;
 	}
 
-	public boolean useAbility(Player sender, Player target) {
-		ItemStack i = sender.getItemInHand();
-
-		// sees if they are fightclassed
-		FightClass f = FightClass.get(sender);
-		if (f != null) {
-			// goes through each ability, seeeing if any of the MID's match the
-			// lore of the item
-			for (Ability a : f.getAbilities()) {
-				if (i.getItemMeta().getLore().get(0)
-						.equalsIgnoreCase(a.getMID())) {
-					// use ability
-					a.effect(sender, target);
-				}
-			}
-		} else {
-			return false;
-		}
-		return true;
-	}
-	
 	public static FightClass get(Player p) {
 		FightClass f = null;
 		if (p.hasMetadata("fightclass")) {

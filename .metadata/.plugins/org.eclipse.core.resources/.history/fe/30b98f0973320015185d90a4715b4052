@@ -2,7 +2,9 @@ package com.ngse.fight.classes;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
@@ -65,6 +67,8 @@ public abstract class FightClass {
 						.equalsIgnoreCase(a.getMID())) {
 					// use ability
 					a.effect(sender);
+					
+					}
 				}
 			}
 		} else {
@@ -73,27 +77,6 @@ public abstract class FightClass {
 		return true;
 	}
 
-	public boolean useAbility(Player sender, Player target) {
-		ItemStack i = sender.getItemInHand();
-
-		// sees if they are fightclassed
-		FightClass f = FightClass.get(sender);
-		if (f != null) {
-			// goes through each ability, seeeing if any of the MID's match the
-			// lore of the item
-			for (Ability a : f.getAbilities()) {
-				if (i.getItemMeta().getLore().get(0)
-						.equalsIgnoreCase(a.getMID())) {
-					// use ability
-					a.effect(sender, target);
-				}
-			}
-		} else {
-			return false;
-		}
-		return true;
-	}
-	
 	public static FightClass get(Player p) {
 		FightClass f = null;
 		if (p.hasMetadata("fightclass")) {

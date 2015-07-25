@@ -17,7 +17,7 @@ public class PlayerMovingListener implements Listener {
 
 		if (f != null) {
 			// recharge xp (mana / stanima)
-			p.setExp(p.getExp() + Finals.xpCharge);
+			p.setExp(p.getExp() + 20);
 
 			// check passive abilities
 			for (Ability a : f.getAbilities()) {
