@@ -1,0 +1,13 @@
+package com.ngse.utilities;
+
+import org.bukkit.entity.Player;
+import org.bukkit.util.Vector;
+
+public class Direction {
+
+	public static Vector getOppDir(Player p) {
+		Vector dir = p.getLocation().getDirection();
+		return dir.multiply(-1);
+	}
+
+}

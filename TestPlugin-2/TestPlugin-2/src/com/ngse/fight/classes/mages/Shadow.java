@@ -2,6 +2,7 @@ package com.ngse.fight.classes.mages;
 
 import java.util.ArrayList;
 
+import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
 import com.ngse.fight.classes.Ability;
@@ -10,20 +11,20 @@ import com.ngse.fight.classes.FightClass;
 public class Shadow extends FightClass {
 
 	public Shadow() {
-		super("Shodow");
-		// TODO Auto-generated constructor stub
+		super("Shadow");
 	}
 
 	@Override
 	public ArrayList<Ability> getAbilities() {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Ability> as = new ArrayList<Ability>();
+		return as;
 	}
 
 	@Override
 	public ArrayList<ItemStack> getItems() {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<ItemStack> is = new ArrayList<ItemStack>();
+		is.add(new ItemStack(Material.DIAMOND_SWORD));
+		return is;
 	}
 
 }

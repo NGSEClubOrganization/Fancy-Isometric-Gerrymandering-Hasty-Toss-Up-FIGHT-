@@ -14,7 +14,6 @@ public class Alchemist extends FightClass {
 
 	public Alchemist() {
 		super("Alchemist");
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
