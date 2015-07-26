@@ -1,5 +1,6 @@
 package com.ngse.fight;
 
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -23,8 +24,8 @@ public class PlayerMovingListener implements Listener {
 				Energy.set(p, FightClass.get(p).getmaxEnergy());
 			} else {
 				Energy.add(p, Finals.energyCharge);
-				p.sendMessage("Upping your: "
-						+ String.valueOf(p.getExp()));
+				p.sendMessage(ChatColor.BLUE + "[ENEGY] " + ChatColor.GREEN
+						+ Energy.convertToString(Energy.get(p)));
 			}
 
 			// check passive abilities

@@ -11,7 +11,7 @@ import com.ngse.fight.classes.FightClass;
 public class Shadow extends FightClass {
 
 	public Shadow() {
-		super("Shadow", 200);
+		super("Shadow", 20);
 	}
 
 	@Override

@@ -14,7 +14,7 @@ import com.ngse.fight.specials.TeleportForward;
 public class Teleporter extends FightClass {
 
 	public Teleporter() {
-		super("Teleporter", 200);
+		super("Teleporter", 20);
 	}
 
 	@Override

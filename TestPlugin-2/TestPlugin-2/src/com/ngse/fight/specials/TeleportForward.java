@@ -15,7 +15,7 @@ public class TeleportForward extends Ability {
 	private static final int RANGE = 3;
 
 	public TeleportForward() {
-		super("Teleboost Wand", 1, "telboo");
+		super("Teleboost Wand", 10, "telboo");
 	}
 
 	@Override

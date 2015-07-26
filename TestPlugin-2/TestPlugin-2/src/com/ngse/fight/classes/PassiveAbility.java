@@ -19,15 +19,15 @@ public abstract class PassiveAbility extends Ability {
 	public void togglePassiveAbility(Player p, PassiveAbility pass) {
 		if (p.hasMetadata(getName())) {
 			// set the metadata to the opposite Toggle value
-			p.setMetadata(getName(), new FixedMetadataValue(FIGHT.plugin,
-					!isActive(p)));
+			Toggle.setMetaToggle(p, getName(), Toggle.fromMeta(p, getName())
+					.toggle().b);
 
 			FIGHT.log("Toggled " + pass.getName() + " to "
 					+ String.valueOf(isActive(p)));
 
 			// when toggled off, then do endPassiveEffect()
 			if (!Toggle.fromMeta(p, getName()).b) {
-				// endPassiveEffect(p);
+				endPassiveEffect(p);
 			}
 		} else {
 			// set the metadata for this passive to true
