@@ -3,6 +3,8 @@ package com.ngse.fight.classes;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import net.md_5.bungee.api.ChatColor;
+
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -17,6 +19,7 @@ public abstract class FightClass {
 
 	public static HashMap<String, FightClass> allClasses = new HashMap<String, FightClass>();
 
+	@SuppressWarnings("unused")
 	public static void fightClassesArraySetup() {
 		Alchemist ach = new Alchemist();
 		Shadow sha = new Shadow();
@@ -32,13 +35,19 @@ public abstract class FightClass {
 	@SuppressWarnings("unused")
 	private ArrayList<ItemStack> items;
 	private String name;
+	private int maxEnergy;
 
 	public String getName() {
 		return this.name;
 	}
 
-	public FightClass(String name) {
+	public int getmaxEnergy() {
+		return maxEnergy;
+	}
+
+	public FightClass(String name, int maxEnergy) {
 		this.name = name;
+		this.maxEnergy = maxEnergy;
 		items = getItems();
 		abilities = getAbilities();
 		allClasses.put(this.name, this);
@@ -73,12 +82,9 @@ public abstract class FightClass {
 				if (i.getItemMeta().getLore().get(0)
 						.equalsIgnoreCase(a.getMID())) {
 					// check if cost is able to be paid, and pay it
-					/*
-					 * if (a.useCost(sender)) { a.effect(sender); }
-					 */
-					// use ability
-					a.effect(sender);
-
+					if (a.useCost(sender)) {
+						a.effect(sender);
+					}
 				}
 			}
 		} else {
@@ -99,12 +105,12 @@ public abstract class FightClass {
 				if (i.getItemMeta().getLore().get(0)
 						.equalsIgnoreCase(a.getMID())) {
 					// check if cost is able to be paid, and pay it
-					/*
-					 * if (a.useCost(sender)) { a.effect(sender, target); }
-					 */
-
-					// use ability
-					a.effect(sender, target);
+					if (a.useCost(sender)) {
+						sender.sendMessage(ChatColor.GREEN + "Paid XP!");
+						a.effect(sender, target);
+					} else {
+						sender.sendMessage(ChatColor.RED + "Not enought XP");
+					}
 				}
 			}
 		} else {

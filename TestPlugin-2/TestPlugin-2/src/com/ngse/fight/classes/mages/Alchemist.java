@@ -13,7 +13,7 @@ import com.ngse.fight.specials.Water;
 public class Alchemist extends FightClass {
 
 	public Alchemist() {
-		super("Alchemist");
+		super("Alchemist", 200);
 	}
 
 	@Override

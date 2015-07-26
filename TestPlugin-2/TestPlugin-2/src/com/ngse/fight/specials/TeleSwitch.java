@@ -10,7 +10,7 @@ import com.ngse.fight.classes.Ability;
 public class TeleSwitch extends Ability {
 
 	public TeleSwitch() {
-		super("Teleswitch", 3, false, "telswi");
+		super("Teleswitch", 3, "telswi");
 		// TODO Auto-generated constructor stub
 	}
 
@@ -31,7 +31,7 @@ public class TeleSwitch extends Ability {
 
 	@Override
 	public ItemStack getItem() {
-		setupItem(Material.ARROW, this);
+		setupItem(Material.STICK, this);
 		return null;
 	}
 

@@ -9,21 +9,20 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import com.ngse.fight.Finals;
+import com.ngse.utilities.Energy;
 
 public abstract class Ability {
 
 	public int level;
-	public boolean isPassive;
 	public ItemStack item;
 	public String name;
 	public String MID;
 
 	// all abilities are attched to items
 
-	public Ability(String name, int level, boolean isPassive, String MID) {
+	public Ability(String name, int level, String MID) {
 		this.name = name;
 		this.level = level;
-		this.isPassive = isPassive;
 		this.item = getItem();
 		this.MID = MID;
 	}
@@ -41,24 +40,20 @@ public abstract class Ability {
 	}
 
 	public int getCost() {
-		return (int) (level * Finals.xpCostPerAbilityLevel);
+		return (int) (level * Finals.energyCostPerAbilityLevel);
 	}
 
 	/*
 	 * @Return: True means that the cost was subtracted and the ability should
-	 * be activated. False mean that the cost > exp and the ability should not
-	 * be activated
+	 * be activated. False mean that the cost > energy and the ability should
+	 * not be activated
 	 */
 	public boolean useCost(Player p) {
-		if (p.getExp() >= this.getCost()) {
-			p.setExp(p.getExp() - this.getCost());
+		if (Energy.get(p) >= this.getCost()) {
+			Energy.add(p, -getCost());
 			return true;
 		}
 		return false;
-	}
-
-	public boolean isPassive() {
-		return isPassive;
 	}
 
 	public abstract ItemStack getItem();
@@ -67,6 +62,7 @@ public abstract class Ability {
 		return MID;
 	}
 
+	// common setupitem method for making Ability-linked items
 	public static ItemStack setupItem(Material m, Ability a) {
 		ItemStack i = new ItemStack(m, 1);
 		ItemMeta im = i.getItemMeta();

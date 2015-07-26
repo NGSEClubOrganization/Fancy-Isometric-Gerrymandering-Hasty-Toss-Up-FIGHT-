@@ -16,7 +16,7 @@ import com.ngse.utilities.Toggle;
 public class Hover extends PassiveAbility {
 
 	public Hover() {
-		super("Hover", 2, true, "hov");
+		super("Hover", 1, "hov");
 	}
 
 	@Override
@@ -27,13 +27,7 @@ public class Hover extends PassiveAbility {
 	@Override
 	public void effect(Player user) {
 		// toggle hovering
-		if (user.hasMetadata(getName())) {
-			user.setMetadata(getName(), new FixedMetadataValue(FIGHT.plugin,
-					Toggle.fromMeta(user, getName()).toggle()));
-			;
-		} else {
-			Toggle.setMetaToggle(user, getName(), true);
-		}
+		togglePassiveAbility(user, this);
 	}
 
 	@Override
@@ -47,32 +41,34 @@ public class Hover extends PassiveAbility {
 
 		if (p.hasMetadata(getName())) {
 			if (isActive(user)) {
-				// logging
-				p.sendMessage(getName());
-				Location l = p.getLocation();
-				Location below = l.add(0, -1, 0);
+				if (isActive(user)) {
+					// logging
+					p.sendMessage(getName());
+					Location l = p.getLocation();
+					Location below = l.add(0, -1, 0);
 
-				destroyHoveringBlock(user);
+					destroyHoveringBlock(user, false);
 
-				if (!below.getBlock().getType().isSolid()) {
-					// if the block isnt solid, then set it to glass
-					below.getBlock().setType(Material.GLASS);
-					below.getBlock().getState().setType(Material.GLASS);
-					below.getBlock().getState().update();
+					if (!below.getBlock().getType().isSolid()) {
+						// if the block isnt solid, then set it to glass
+						below.getBlock().setType(Material.GLASS);
+						below.getBlock().getState().setType(Material.GLASS);
+						below.getBlock().getState().update();
+					}
 				}
-			}
 
-			if (Toggle.fromMeta(p, getName()).b) {
-				p.sendMessage(ChatColor.LIGHT_PURPLE + "[HOVERING] "
-						+ ChatColor.GREEN + "ON");
-			} else {
-				p.sendMessage(ChatColor.LIGHT_PURPLE + "[HOVERING] "
-						+ ChatColor.RED + "OFF");
+				if (Toggle.fromMeta(p, getName()).b) {
+					p.sendMessage(ChatColor.LIGHT_PURPLE + "[HOVERING] "
+							+ ChatColor.GREEN + "ON");
+				} else {
+					p.sendMessage(ChatColor.LIGHT_PURPLE + "[HOVERING] "
+							+ ChatColor.RED + "OFF");
+				}
 			}
 		}
 	}
 
-	public static void destroyHoveringBlock(Player p) {
+	public static void destroyHoveringBlock(Player p, boolean all) {
 		Location l = p.getLocation();
 		Location below = l.add(0, -1, 0);
 
@@ -95,6 +91,10 @@ public class Hover extends PassiveAbility {
 		turnToAir(below, 0, y, 1);
 		turnToAir(below, -1, y, 0);
 		turnToAir(below, 1, y, 0);
+
+		if (all) {
+			turnToAir(below, 0, y, 0);
+		}
 	}
 
 	private static void turnToAir(Location below, double x, double y, double z) {
@@ -109,21 +109,7 @@ public class Hover extends PassiveAbility {
 
 	@Override
 	public void endPassiveEffect(Player p) {
-		// Location l = p.getLocation();
-		//
-		// for (int x = -2; x <= 2; x++) {
-		// for (int z = -1; z <= 1; z++) {
-		// Location nl = l.add(x, 0, z);
-		// Block b = nl.getBlock();
-		// // set the block to its
-		// // metadata'd original block (if it has that)
-		// Block c = b.hasMetadata("originalblock") ? (Block) b
-		// .getMetadata("originalblock") : null;
-		// if (c != null) {
-		// nl.getBlock().setType(c.getType());
-		// }
-		// }
-		// }
+		destroyHoveringBlock(p, true);
 	}
 
 }

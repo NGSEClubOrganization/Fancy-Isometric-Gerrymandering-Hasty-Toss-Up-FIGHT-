@@ -8,8 +8,8 @@ import com.ngse.utilities.Toggle;
 
 public abstract class PassiveAbility extends Ability {
 
-	public PassiveAbility(String name, int level, boolean isPassive, String MID) {
-		super(name, level, isPassive, MID);
+	public PassiveAbility(String name, int level, String MID) {
+		super(name, level, MID);
 	}
 
 	public abstract void passiveEffect(Player p);
@@ -20,9 +20,15 @@ public abstract class PassiveAbility extends Ability {
 		if (p.hasMetadata(getName())) {
 			// set the metadata to the opposite Toggle value
 			p.setMetadata(getName(), new FixedMetadataValue(FIGHT.plugin,
-					!((Toggle) p.getMetadata(getName()).get(0).value()).b));
+					!isActive(p)));
+
 			FIGHT.log("Toggled " + pass.getName() + " to "
 					+ String.valueOf(isActive(p)));
+
+			// when toggled off, then do endPassiveEffect()
+			if (!Toggle.fromMeta(p, getName()).b) {
+				// endPassiveEffect(p);
+			}
 		} else {
 			// set the metadata for this passive to true
 			p.setMetadata(getName(), new FixedMetadataValue(FIGHT.plugin,
@@ -33,6 +39,10 @@ public abstract class PassiveAbility extends Ability {
 	}
 
 	public boolean isActive(Player p) {
-		return ((Toggle) p.getMetadata(getName()).get(0).value()).b;
+		if (Toggle.fromMeta(p, getName()) == null) {
+			return false;
+		} else {
+			return Toggle.fromMeta(p, getName()).b;
+		}
 	}
 }
