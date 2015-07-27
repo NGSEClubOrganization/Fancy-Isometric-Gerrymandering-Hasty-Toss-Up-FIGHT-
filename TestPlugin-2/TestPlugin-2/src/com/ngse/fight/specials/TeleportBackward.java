@@ -7,26 +7,27 @@ import org.bukkit.inventory.ItemStack;
 
 import com.ngse.fight.classes.Ability;
 
-public class TeleSwitch extends Ability {
+public class TeleportBackward extends Ability {
 
-	public TeleSwitch() {
-		super("Teleswitch", 15, "telswi");
-		// TODO Auto-generated constructor stub
+	public static final int RANGE = 3;
+
+	public TeleportBackward() {
+		super("Teleretreat", 15, "telret");
 	}
 
 	@Override
 	public void effect(Player user, Player target) {
-		Location pla = user.getLocation();
-		Location tar = target.getLocation();
+		effect(user);
 
-		// switch places
-		user.teleport(tar);
-		target.teleport(pla);
 	}
 
 	@Override
 	public void effect(Player user) {
-		// nothing, needs targetF
+		Location l = user.getLocation();
+		l.add(l.getDirection().multiply(-RANGE));
+		if (!l.getBlock().getType().isSolid()) {
+			user.teleport(l);
+		}
 	}
 
 	@Override

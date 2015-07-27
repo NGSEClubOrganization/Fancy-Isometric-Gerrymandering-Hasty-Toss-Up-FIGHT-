@@ -13,7 +13,7 @@ import com.ngse.fight.classes.Ability;
 public class GiveRandomPotion extends Ability {
 
 	public GiveRandomPotion() {
-		super("Random Potion Generator", 1, false, "ranpotgen");
+		super("Random Potion Generator", 20, "ranpotgen");
 	}
 
 	@Override

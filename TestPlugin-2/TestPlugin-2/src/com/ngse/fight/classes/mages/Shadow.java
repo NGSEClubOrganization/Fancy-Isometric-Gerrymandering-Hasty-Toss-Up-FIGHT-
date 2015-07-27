@@ -7,24 +7,28 @@ import org.bukkit.inventory.ItemStack;
 
 import com.ngse.fight.classes.Ability;
 import com.ngse.fight.classes.FightClass;
+import com.ngse.fight.specials.DarkCircle;
+import com.ngse.fight.specials.Invisible;
+import com.ngse.fight.specials.TeleportBackward;
 
 public class Shadow extends FightClass {
 
 	public Shadow() {
-		super("Shadow");
+		super("Shadow", 20);
 	}
 
 	@Override
 	public ArrayList<Ability> getAbilities() {
-		ArrayList<Ability> as = new ArrayList<Ability>();
-		return as;
+		Ability[] a = { new TeleportBackward(), new DarkCircle(),
+				new Invisible() };
+		return abilitiesArray(a);
 	}
 
 	@Override
 	public ArrayList<ItemStack> getItems() {
-		ArrayList<ItemStack> is = new ArrayList<ItemStack>();
-		is.add(new ItemStack(Material.DIAMOND_SWORD));
-		return is;
+		ItemStack[] i = { is(Material.DIAMOND_SWORD),
+				is(Material.LEATHER_BOOTS), is(Material.LEATHER_CHESTPLATE),
+				is(Material.LEATHER_HELMET), is(Material.LEATHER_LEGGINGS) };
+		return itemstacksArray(i);
 	}
-
 }

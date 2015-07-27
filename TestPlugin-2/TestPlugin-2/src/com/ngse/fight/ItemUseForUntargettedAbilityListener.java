@@ -18,7 +18,6 @@ public class ItemUseForUntargettedAbilityListener implements Listener {
 			f = (FightClass) FightClass.get(p);
 			if (f != null) {
 				f.useAbility(p);
-				p.sendMessage("Used your ability!");
 			}
 		}
 	}

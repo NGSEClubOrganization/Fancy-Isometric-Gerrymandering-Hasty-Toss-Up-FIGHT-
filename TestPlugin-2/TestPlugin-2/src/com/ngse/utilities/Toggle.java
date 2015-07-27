@@ -42,4 +42,15 @@ public class Toggle {
 		return fromMeta(b, metadataKey).b;
 	}
 
+	public static boolean toggleMeta(Player p, String metadataKey) {
+		if (fromMeta(p, metadataKey) == null) {
+			setMetaToggle(p, metadataKey, true);
+			return true;
+		} else {
+			setMetaToggle(p, metadataKey, fromMeta(p, metadataKey).toggle().b);
+			return fromMeta(p, metadataKey).b;
+		}
+
+	}
+
 }

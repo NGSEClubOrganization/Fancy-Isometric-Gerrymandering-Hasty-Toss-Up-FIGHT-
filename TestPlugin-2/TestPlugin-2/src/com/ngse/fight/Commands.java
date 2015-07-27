@@ -16,6 +16,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import com.ngse.fight.classes.Ability;
 import com.ngse.fight.classes.FightClass;
+import com.ngse.utilities.Energy;
 
 public class Commands {
 
@@ -40,14 +41,7 @@ public class Commands {
 	}
 
 	public void tester() {
-		ItemStack i = new ItemStack(Material.STICK);
-		ItemMeta a = i.getItemMeta();
-		a.setDisplayName("Cool Sword");
-		List<String> arr = new ArrayList<String>();
-		arr.add("Very nice, young one...");
-		a.setLore(arr);
-		i.setItemMeta(a);
-		sender.getInventory().addItem(i);
+		Energy.sendEnergyStatus(sender, 0);
 	}
 
 	// /fight class <classname>
@@ -59,6 +53,7 @@ public class Commands {
 					+ "Check class names with /f class info all");
 			return false;
 		}
+		sender.getInventory().clear();
 		FIGHT.createPlayer(sender, args[1]);
 		FightClass f = FightClass.get(sender);
 		FIGHT.plugin.getLogger().info(sender.getName() + " : " + (f).getName());

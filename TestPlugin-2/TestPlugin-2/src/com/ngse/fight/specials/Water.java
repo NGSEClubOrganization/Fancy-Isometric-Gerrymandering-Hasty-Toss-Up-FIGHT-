@@ -12,7 +12,7 @@ public class Water extends Ability {
 	private static final int RANGE = 2;
 
 	public Water() {
-		super("Water", 1, false, "wat");
+		super("Water", 15, "wat");
 	}
 
 	@Override

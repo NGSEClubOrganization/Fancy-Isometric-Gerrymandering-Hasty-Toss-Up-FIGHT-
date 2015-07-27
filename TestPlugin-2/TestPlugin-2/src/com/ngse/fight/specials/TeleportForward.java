@@ -15,7 +15,7 @@ public class TeleportForward extends Ability {
 	private static final int RANGE = 3;
 
 	public TeleportForward() {
-		super("Teleboost Wand", 1, false, "telboo");
+		super("Teleboost Wand", 10, "telboo");
 	}
 
 	@Override
@@ -43,7 +43,7 @@ public class TeleportForward extends Ability {
 			}
 		}
 		if (safe) {
-			Hover.destroyHoveringBlock(user);
+			Hover.destroyHoveringBlock(user, true);
 			user.getWorld().playEffect(user.getLocation(), Effect.DOOR_TOGGLE,
 					10);
 			user.teleport(loc);
