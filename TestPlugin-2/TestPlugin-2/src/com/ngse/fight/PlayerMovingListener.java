@@ -24,8 +24,6 @@ public class PlayerMovingListener implements Listener {
 				Energy.set(p, FightClass.get(p).getmaxEnergy());
 			} else {
 				Energy.add(p, Finals.energyCharge);
-				p.sendMessage(ChatColor.BLUE + "[ENEGY] " + ChatColor.GREEN
-						+ Energy.convertToString(Energy.get(p)));
 			}
 
 			// check passive abilities
@@ -37,10 +35,8 @@ public class PlayerMovingListener implements Listener {
 						 */
 						// use ability
 						if (a.useCost(p)) {
-							p.sendMessage("Using Ability");
 							((PassiveAbility) a).passiveEffect(p);
 						} else {
-							p.sendMessage("Not enought xp :(");
 							((PassiveAbility) a).endPassiveEffect(p);
 							a.effect(p);
 						}

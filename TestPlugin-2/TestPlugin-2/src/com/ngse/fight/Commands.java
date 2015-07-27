@@ -41,7 +41,7 @@ public class Commands {
 	}
 
 	public void tester() {
-		Energy.sendEnergyStatus(sender, true);
+		Energy.sendEnergyStatus(sender, 0);
 	}
 
 	// /fight class <classname>

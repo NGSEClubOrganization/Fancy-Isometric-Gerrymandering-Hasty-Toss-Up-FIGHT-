@@ -42,8 +42,6 @@ public class Hover extends PassiveAbility {
 		if (p.hasMetadata(getName())) {
 			if (isActive(user)) {
 				if (isActive(user)) {
-					// logging
-					p.sendMessage(getName());
 					Location l = p.getLocation();
 					Location below = l.add(0, -1, 0);
 
@@ -53,16 +51,8 @@ public class Hover extends PassiveAbility {
 						// if the block isnt solid, then set it to glass
 						below.getBlock().setType(Material.GLASS);
 						below.getBlock().getState().setType(Material.GLASS);
-						below.getBlock().getState().update();
+						below.getBlock().getState().update(true);
 					}
-				}
-
-				if (Toggle.fromMeta(p, getName()).b) {
-					p.sendMessage(ChatColor.LIGHT_PURPLE + "[HOVERING] "
-							+ ChatColor.GREEN + "ON");
-				} else {
-					p.sendMessage(ChatColor.LIGHT_PURPLE + "[HOVERING] "
-							+ ChatColor.RED + "OFF");
 				}
 			}
 		}
@@ -103,7 +93,7 @@ public class Hover extends PassiveAbility {
 		if (nl.getBlock().getType().equals(Material.GLASS)) {
 			nl.getBlock().setType(Material.AIR);
 			nl.getBlock().getState().setType(Material.AIR);
-			nl.getBlock().getState().update();
+			nl.getBlock().getState().update(true);
 		}
 	}
 

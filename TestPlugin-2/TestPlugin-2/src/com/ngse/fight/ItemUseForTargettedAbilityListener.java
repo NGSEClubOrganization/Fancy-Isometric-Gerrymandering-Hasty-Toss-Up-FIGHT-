@@ -19,7 +19,6 @@ public class ItemUseForTargettedAbilityListener implements Listener {
 			if (f != null) {
 				if (evt.getRightClicked() instanceof Player) {
 					f.useAbility(p, (Player) evt.getRightClicked());
-					p.sendMessage("Used your ability!");
 				}
 			}
 		}
